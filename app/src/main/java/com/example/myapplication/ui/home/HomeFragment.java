@@ -1,33 +1,49 @@
 package com.example.myapplication.ui.home;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+//import androidx.recyclerview;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.ClassDetailAdapter;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentHomeBinding;
+
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    RecyclerView recyclerView;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+//    @Override
+    protected void onCreateView(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        // Getting reference of recyclerView
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        // Setting the layout as linear
+        // layout for vertical orientation
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        // Sending reference and data to Adapter
+        ClassDetailAdapter adapter = new ClassDetailAdapter(MainActivity.this, courseName);
+
+        // Setting Adapter to RecyclerView
+        recyclerView.setAdapter(adapter);
     }
+
+
+
+
+
+
+
 
     @Override
     public void onDestroyView() {
