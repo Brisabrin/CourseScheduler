@@ -7,41 +7,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.content.Context;
+
 
 //title, date, description
 public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.ViewHolder> {
 
-    private ArrayList classStuff;
-    public ClassDetailAdapter(ArrayList classStuff) {
+    private ArrayList<ClassDetails> classStuff;
+    private final Context context;
+    public ClassDetailAdapter(Context context, ArrayList<ClassDetails> classStuff) {
+        this.context = context;
         this.classStuff = classStuff;
     }
 
-
     @Override
     public ClassDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-
-        // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.class_list, parent, false);
-
-        // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
-        return viewHolder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.class_list, parent, false);
+        return new ViewHolder(view);
     }
 
-//    @Override
-//    public void onBindViewHolder(ContactsAdapter.ViewHolder holder, int position) {
-//        // Get the data model based on position
-//        Contact contact = mContacts.get(position);
-//
-//        // Set item views based on your views and data model
-//        TextView textView = holder.nameTextView;
-//        textView.setText(contact.getName());
-//        Button button = holder.messageButton;
-//        button.setText(contact.isOnline() ? "Message" : "Offline");
-//        button.setEnabled(contact.isOnline());
-//    }
+    @Override
+    public void onBindViewHolder(ClassDetailAdapter.ViewHolder holder, int position) {
+        // Get the data model based on position
+        ClassDetails classDetails = classStuff.get(position);
+
+        // Set item views based on your views and data model
+        TextView titleView = holder.titleTextView;
+        titleView.setText(classDetails.title);
+        TextView dateView = holder.dateTextView;
+        dateView.setText(classDetails.datetime);
+        TextView instructorView = holder.instructorTextView;
+        instructorView.setText(classDetails.instructor);
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
         //textview : id, title, date, instructor
         public TextView titleTextView, dateTextView, instructorTextView;
@@ -53,16 +50,17 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            titleTextView = (TextView) itemView.findViewById(R.id.courseName);
-            dateTextView = (TextView) itemView.findViewById(R.id.classTime);
-            instructorTextView = (TextView) itemView.findViewById(R.id.instructor);
+            titleTextView = (TextView) itemView.findViewById(R.id.idCourseName);
+            dateTextView = (TextView) itemView.findViewById(R.id.idCourseTime);
+            instructorTextView = (TextView) itemView.findViewById(R.id.idInstructor);
 
 
         }
     }
-
-
-
+    @Override
+    public int getItemCount() {
+        return classStuff.size();
+    }
 
 }
 
