@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,11 +37,13 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         ArrayList<ClassDetails> classDetailsList = new ArrayList<>();
-        classDetailsList.add(new ClassDetails("1", "Java Basics", "2024-01-25 10:00 AM", "John Doe"));
-        classDetailsList.add(new ClassDetails("2", "Data Structures", "2024-02-01 11:30 AM", "Alice Smith"));
-        classDetailsList.add(new ClassDetails("3", "Advanced Java", "2024-02-15 02:00 PM", "Bob Johnson"));
-        classDetailsList.add(new ClassDetails("4", "Database Design", "2024-03-05 09:15 AM", "Eva Brown"));
-        classDetailsList.add(new ClassDetails("5", "Web Development", "2024-03-20 03:45 PM", "Charlie Wilson"));
+//        classDetailsList.add(new ClassDetails("Java Basics", "2024-01-25 10:00 AM", "John Doe"));
+//        classDetailsList.add(new ClassDetails("Data Structures", "2024-02-01 11:30 AM", "Alice Smith"));
+//        classDetailsList.add(new ClassDetails("Advanced Java", "2024-02-15 02:00 PM", "Bob Johnson"));
+//        classDetailsList.add(new ClassDetails("Database Design", "2024-03-05 09:15 AM", "Eva Brown"));
+//        classDetailsList.add(new ClassDetails("Web Development", "2024-03-20 03:45 PM", "Charlie Wilson"));
+
+
 
         recyclerView = view.findViewById(R.id.idCourse);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -49,7 +52,8 @@ public class HomeFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToInputFragment();
+                NavHostFragment.findNavController(HomeFragment.this)
+                        .navigate(R.id.action_homeFragment_to_classInputFragment);
             }
         });
 

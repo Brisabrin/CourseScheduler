@@ -16,19 +16,17 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.example.myapplication.tempstore;
+import com.example.myapplication.Tempstore;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     private ActivityMainBinding binding;
-
-    private tempstore appstore;
+    Tempstore tempstore = Tempstore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        appstore = new tempstore();
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -44,5 +42,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+
+
 
 }

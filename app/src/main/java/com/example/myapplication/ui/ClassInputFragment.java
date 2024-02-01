@@ -21,9 +21,10 @@ import com.example.myapplication.ClassDetails;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import
 
 
+import com.example.myapplication.Tempstore;
+import com.example.myapplication.tempstore;
 import com.example.myapplication.ui.dashboard.DashboardViewModel;
 import java.util.ArrayList;
 public class ClassInputFragment extends Fragment {
@@ -47,13 +48,16 @@ public class ClassInputFragment extends Fragment {
         titleInput = view.findViewById(R.id.titleInput);
         datetimeInput = view.findViewById(R.id.datetimeInput);
         instructorInput = view.findViewById(R.id.instructorInput);
+
         submitBtn.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
+                ClassDetails new_course  = new ClassDetails(titleInput.getText().toString(), datetimeInput.getText().toString(), instructorInput.getText().toString());
+                Tempstore tempstore = Tempstore.getInstance();
+                tempstore.addCourseDetails(new_course);
 
-                // Handle the submit button click (e.g., retrieve input values and pass them back)
-                // You can use a callback or ViewModel to communicate with HomeFragment
-                // For simplicity, you can use Navigation Component to navigate back to HomeFragment
                 NavHostFragment.findNavController(ClassInputFragment.this).popBackStack();
             }
         });

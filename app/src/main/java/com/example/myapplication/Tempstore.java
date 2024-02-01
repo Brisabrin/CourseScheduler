@@ -1,15 +1,24 @@
 package com.example.myapplication;
 import java.util.HashMap;
 import java.util.ArrayList;
-import com.example.myapplication.Assignments;
-import com.example.myapplication.Exams;
-import com.example.myapplication.ClassDetails;
 
-public class tempstore {
+public class Tempstore {
 
     //Class Details, Exams, Assignments
+    private static Tempstore instance;
     public static HashMap<String, HashMap<String,Object>> coursedata;
     public static String classId; //when pressed set class id
+    private Tempstore() {
+        // Private constructor to prevent instantiation
+    }
+
+    public static synchronized Tempstore getInstance() {
+        if (instance == null) {
+            instance = new Tempstore();
+        }
+        return instance;
+    }
+
 
     public static void addCourseDetails(ClassDetails data) {
         if (coursedata == null) {
@@ -45,5 +54,11 @@ public class tempstore {
         }
         a.add(data);
     }
+
+
+//    public static void getClassList() {
+//
+//
+//    }
 
 }
