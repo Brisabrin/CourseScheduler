@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import java.util.UUID;
+import java.time.LocalDateTime;
 
 public class ClassDetails {
     public String id;
@@ -12,6 +13,8 @@ public class ClassDetails {
         this.title = title;
         this.datetime = datetime;
         this.instructor = instructor;
-
+    }
+    public String getId() {
+        return id;
     }
 }

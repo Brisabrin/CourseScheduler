@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.content.Context;
 
@@ -15,9 +16,15 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
 
     private ArrayList<ClassDetails> classStuff;
     private final Context context;
-    public ClassDetailAdapter(Context context, ArrayList<ClassDetails> classStuff) {
+    private OnItemClickListener onItemClickListener;
+    public interface OnItemClickListener {
+        void onItemClick(String classId);
+    }
+
+    public ClassDetailAdapter(Context context, ArrayList<ClassDetails> classStuff,OnItemClickListener onItemClickListener) {
         this.context = context;
         this.classStuff = classStuff;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -38,7 +45,17 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
         dateView.setText(classDetails.datetime);
         TextView instructorView = holder.instructorTextView;
         instructorView.setText(classDetails.instructor);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(classDetails.getId());
+                }
+            }
+        });
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         //textview : id, title, date, instructor
         public TextView titleTextView, dateTextView, instructorTextView;

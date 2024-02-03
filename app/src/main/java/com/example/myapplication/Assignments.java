@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import java.util.UUID;
+
 public class Assignments {
     public String id;
     public String classId;
@@ -7,8 +9,8 @@ public class Assignments {
     public String datedue;
     public String description;
 
-    public Assignments(String id, String title, String datedue, String description) {
-        this.id = id;
+    public Assignments(String title, String datedue, String description) {
+        this.id = UUID.randomUUID().toString();;
         this.title = title;
         this.datedue = datedue;
         this.description = description;

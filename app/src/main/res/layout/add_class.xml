@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!-- Title input field -->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -13,17 +12,15 @@
         android:layout_height="wrap_content"
         android:hint="Title"
         android:inputType="text" />
-
     <!-- Datetime input field -->
     <EditText
         android:id="@+id/datetimeInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titleInput"
-        android:hint="Datetime"
-        android:inputType="datetime" />
-
-    <!-- Instructor input field -->
+        android:hint="Schedule"
+        android:inputType="text" />
+        <!-- Instructor input field -->
     <EditText
         android:id="@+id/instructorInput"
         android:layout_width="match_parent"
@@ -31,8 +28,6 @@
         android:layout_below="@id/datetimeInput"
         android:hint="Instructor"
         android:inputType="text" />
-
-
     <Button
         android:id="@+id/submitBtn"
         android:layout_width="wrap_content"
@@ -41,7 +36,5 @@
         android:layout_below="@id/instructorInput"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
-
     </RelativeLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 //import androidx.recyclerview;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,39 +14,27 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.ClassDetailAdapter;
 import com.example.myapplication.ClassDetails;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.example.myapplication.databinding.FragmentDashboardBinding;
+import com.example.myapplication.Tempstore;
 import com.example.myapplication.databinding.FragmentHomeBinding;
 import com.example.myapplication.ui.dashboard.DashboardViewModel;
 import java.util.ArrayList;
-
-
-public class HomeFragment extends Fragment {
-
+public class HomeFragment extends Fragment implements ClassDetailAdapter.OnItemClickListener{
     private FragmentHomeBinding binding;
     private RecyclerView recyclerView;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
         ArrayList<ClassDetails> classDetailsList = new ArrayList<>();
-//        classDetailsList.add(new ClassDetails("Java Basics", "2024-01-25 10:00 AM", "John Doe"));
-//        classDetailsList.add(new ClassDetails("Data Structures", "2024-02-01 11:30 AM", "Alice Smith"));
-//        classDetailsList.add(new ClassDetails("Advanced Java", "2024-02-15 02:00 PM", "Bob Johnson"));
-//        classDetailsList.add(new ClassDetails("Database Design", "2024-03-05 09:15 AM", "Eva Brown"));
-//        classDetailsList.add(new ClassDetails("Web Development", "2024-03-20 03:45 PM", "Charlie Wilson"));
-
-
-
+        Tempstore tempstore = Tempstore.getInstance();
+        classDetailsList = (ArrayList<ClassDetails>) tempstore.getClassList();
         recyclerView = view.findViewById(R.id.idCourse);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new ClassDetailAdapter(getActivity(), classDetailsList));
+        recyclerView.setAdapter(new ClassDetailAdapter(getActivity(), classDetailsList, this));
         Button addButton = view.findViewById(R.id.addClassButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,16 +43,20 @@ public class HomeFragment extends Fragment {
                         .navigate(R.id.action_homeFragment_to_classInputFragment);
             }
         });
-
         return view;
     }
-
-
-
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+    @Override
+    public void onItemClick(String classId) {
+        // Handle item click, navigate to "assignments" page with the classId parameter
+        Bundle bundle = new Bundle();
+        bundle.putString("classId", classId);
+
+        NavHostFragment.findNavController(HomeFragment.this)
+                .navigate(R.id.action_homeFragment_to_redirectFragment, bundle);
     }
 }

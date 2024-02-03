@@ -15,8 +15,10 @@
         android:id="@+id/action_homeFragment_to_classInputFragment"
         app:destination="@id/classInputFragment" />
 
+        <action
+        android:id="@+id/action_homeFragment_to_redirectFragment"
+        app:destination="@id/redirectFragment" />
     </fragment>
-
 
 
     <fragment
@@ -31,11 +33,53 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
-
     <fragment
         android:id="@+id/classInputFragment"
         android:name="com.example.myapplication.ui.ClassInputFragment"
         android:label="fragment_class_input"
         tools:layout="@layout/add_class" />
+
+    <fragment
+        android:id="@+id/redirectFragment"
+        android:name="com.example.myapplication.ui.RedirectFragment"
+        android:label="fragment_redirect"
+        tools:layout="@layout/redirect_home" >
+<!--        <action-->
+<!--            android:id="@+id/action_redirectFragment_to_assignmentsFragment" />-->
+        <action
+            android:id="@+id/action_redirectFragment_to_examsFragment"
+            app:destination="@id/examsFragment" />
+        <action
+            android:id="@+id/action_redirectFragment_to_assignmentsFragment"
+            app:destination="@id/assignmentsFragment"
+            />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/examsFragment"
+        android:name="com.example.myapplication.ui.ExamFragment"
+        android:label="fragment_exams"
+        tools:layout="@layout/fragment_exam" >
+        <action
+            android:id="@+id/action_examsFragment_to_addExamFragment"
+            app:destination="@id/addExamFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/addExamFragment"
+        android:name="com.example.myapplication.ui.AddExamFragment"
+        android:label="add_exam"
+        tools:layout="@layout/add_exam"
+        ></fragment>
+
+
+    <fragment
+        android:id="@+id/assignmentsFragment"
+        android:name="com.example.myapplication.ui.AssignmentsFragment"
+        android:label="fragment_assignments"
+        tools:layout="@layout/fragment_assignments" />
+
 
 </navigation>

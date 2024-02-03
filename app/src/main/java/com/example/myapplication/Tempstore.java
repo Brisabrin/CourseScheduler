@@ -1,6 +1,7 @@
 package com.example.myapplication;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Tempstore {
 
@@ -43,7 +44,7 @@ public class Tempstore {
         a.add(data);
     }
 
-    public static void addExams(Exams data) {
+    public static void addExams(Exams data, String classId) {
         ArrayList<Exams> a;
         if (!coursedata.get(classId).containsKey("Exams")) {
             a = new ArrayList<Exams>();
@@ -56,9 +57,18 @@ public class Tempstore {
     }
 
 
-//    public static void getClassList() {
-//
-//
-//    }
+    public static List<ClassDetails> getClassList() {
+        List<ClassDetails> classList = new ArrayList<>();
 
+        if (coursedata != null) {
+            for (HashMap<String, Object> classData : coursedata.values()) {
+                if (classData.containsKey("Class")) {
+                    ClassDetails classDetails = (ClassDetails) classData.get("Class");
+                    classList.add(classDetails);
+                }
+            }
+        }
+
+        return classList;
+    }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- CardView for Assignments -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAssignments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/textViewAssignments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assignments"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:onClick="redirectToAssignments" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- CardView for Exams -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewExams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/textViewExams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exams"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:onClick="redirectToExams" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- Add other UI elements or modify as needed -->
+
+</LinearLayout>
