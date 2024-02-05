@@ -9,7 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class AssignmentsAdapter extends RecyclerView.Adapter<AssignmentsAdapter.ViewHolder> {
 
@@ -39,14 +41,13 @@ public class AssignmentsAdapter extends RecyclerView.Adapter<AssignmentsAdapter.
         Assignments assignment = assignmentsList.get(position);
 
         holder.titleTextView.setText(assignment.title);
-        holder.dueDateTextView.setText(assignment.datedue);
-        holder.descriptionTextView.setText(assignment.description);
 
-//        holder.itemView.setOnClickListener(v -> {
-//            if (onItemClickListener != null) {
-//                onItemClickListener.onItemClick(assignment.getId());
-//            }
-//        });
+        // Convert Calendar to a formatted String before setting it to TextView
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+        String formattedDueDate = dateFormat.format(assignment.dueDate.getTime());
+
+        holder.dueDateTextView.setText(formattedDueDate);
+        holder.descriptionTextView.setText(assignment.description);
     }
 
     @Override

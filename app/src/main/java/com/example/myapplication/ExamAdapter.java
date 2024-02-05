@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
@@ -39,17 +40,12 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
         Exams examDetails = examList.get(position);
 
         holder.examTitle.setText(examDetails.title);
-        holder.dateTextView.setText(examDetails.datetime);
+        holder.dateTextView.setText(formatDate(examDetails.datetime));
         holder.locationView.setText(examDetails.location);
+    }
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (onItemClickListener != null) {
-//                    onItemClickListener.onItemClick(examDetails.getId());
-//                }
-//            }
-//        });
+    private String formatDate(Calendar calendar) {
+        return android.text.format.DateFormat.format("MMM dd, yyyy", calendar).toString();
     }
 
     @Override

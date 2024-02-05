@@ -32,7 +32,7 @@ public class Tempstore {
         coursedata.put(data.id, classdata);
     }
 
-    public static void addAssignments(Assignments data) {
+    public static void addAssignments(Assignments data, String classId) {
         ArrayList<Assignments> a;
         if (!coursedata.get(classId).containsKey("Assignments")) {
             a = new ArrayList<Assignments>();

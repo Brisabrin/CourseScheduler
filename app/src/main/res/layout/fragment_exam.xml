@@ -15,21 +15,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-<!--    <Button-->
-<!--        android:id="@+id/setting"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Setting"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
-
     <Button
         android:id="@+id/addExamButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Exam"
-        app:layout_constraintTop_toBottomOf="@id/setting"
-        app:layout_constraintStart_toStartOf="@id/setting" />
+        android:text="Add Exam" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
