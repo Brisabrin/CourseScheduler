@@ -3,15 +3,10 @@ package com.example.myapplication;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-
 public class Tempstore {
-
-    // Class Details, Exams, Assignments
     private static Tempstore instance;
     public static HashMap<String, HashMap<String,Object>> coursedata;
-    public static String classId; //when pressed set class id
-
+    public static String classId;
     private Tempstore() {
 
     }
@@ -79,19 +74,6 @@ public class Tempstore {
 
         return classList;
     }
-
-
-//    public void addTask(Task task) {
-//        tasks.add(task);
-//    }
-//
-//    public boolean removeTask(Task task) {
-//        return tasks.remove(task);
-//    }
-//
-//    public ArrayList<Task> getTasks() {
-//        return tasks;
-
     public static void deleteClass(String classId) {
         coursedata.remove(classId);
     }
@@ -189,13 +171,28 @@ public class Tempstore {
 
     public static List<Exams> getExamList(String classId) {
         List<Exams> examsList = new ArrayList<>();
-
         if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Exams")) {
             examsList = (List<Exams>) coursedata.get(classId).get("Exams");
         }
 
         return examsList;
 
+    }
+
+    public static void sortByDueDate(String classId) {
+        if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Assignments")) {
+            List<Assignments> assignmentsList = (List<Assignments>) coursedata.get(classId).get("Assignments");
+            assignmentsList.sort((assignment1, assignment2) -> assignment1.dueDate.compareTo(assignment2.dueDate));
+            coursedata.get(classId).put("Assignments", assignmentsList);
+        }
+    }
+
+    public static void sortByTitle(String classId) {
+        if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Assignments")) {
+            List<Assignments> assignmentsList = (List<Assignments>) coursedata.get(classId).get("Assignments");
+            assignmentsList.sort((assignment1, assignment2) -> assignment1.title.compareTo(assignment2.title));
+            coursedata.get(classId).put("Assignments", assignmentsList);
+        }
     }
 }
 

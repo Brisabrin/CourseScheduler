@@ -28,11 +28,9 @@ import com.example.myapplication.ui.dashboard.DashboardViewModel;
 import java.util.ArrayList;
 public class ClassInputFragment extends Fragment {
 
-    // Define your input fields and submit button here
     private EditText titleInput, datetimeInput, instructorInput;
 
     public ClassInputFragment() {
-        // Required empty public constructor
     }
 
     @Override

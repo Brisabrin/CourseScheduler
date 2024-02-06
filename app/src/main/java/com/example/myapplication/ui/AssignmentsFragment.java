@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.widget.ArrayAdapter;
 
 import com.example.myapplication.Assignments;
 import com.example.myapplication.AssignmentsAdapter;
@@ -27,12 +29,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.widget.Spinner;
+
 public class AssignmentsFragment extends Fragment implements AssignmentsAdapter.OnItemClickListener{
 
     private RecyclerView recyclerView;
     private AssignmentsAdapter assignmentsAdapter;
     private String classId;
     Tempstore tempstore = Tempstore.getInstance();
+    private Spinner spinnerSortBy;
 
 
     @SuppressLint("MissingInflatedId")
@@ -63,6 +68,36 @@ public class AssignmentsFragment extends Fragment implements AssignmentsAdapter.
                 onAddAssignmentClicked();
             }
         });
+
+        spinnerSortBy = view.findViewById(R.id.spinnerSortBy);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.sort_options,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerSortBy.setAdapter(adapter);
+
+        spinnerSortBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedItem = parentView.getItemAtPosition(position).toString();
+                if ("Sort by Date".equals(selectedItem)) {
+                    Tempstore.sortByDueDate(classId);
+                    refreshRecyclerView();
+
+                } else if ("Sort by Title".equals(selectedItem)) {
+                    Tempstore.sortByTitle(classId);
+                    refreshRecyclerView();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+
         return view;
     }
 
@@ -98,7 +133,6 @@ public class AssignmentsFragment extends Fragment implements AssignmentsAdapter.
 
         NavHostFragment.findNavController(this)
                 .navigate(R.id.action_assignmentsFragment_to_editAssignmentsFragment, bundle);
-
     }
     public void onDeleteClick(String assignmentId) {
         Log.d("MyClass", "delete button clicked");

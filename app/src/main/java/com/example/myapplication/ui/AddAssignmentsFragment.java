@@ -55,10 +55,7 @@ public class AddAssignmentsFragment extends Fragment {
                     saveAssignment();
                 }
             });
-        } else {
-            // Log an error or handle the situation where one of the views is null
         }
-
         return view;
     }
 

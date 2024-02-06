@@ -6,7 +6,7 @@ public class Assignments {
     public String id;
     public String classId;
     public String title;
-    public Calendar dueDate;  // Change the type to Calendar
+    public Calendar dueDate;
     public String description;
 
     public Assignments(String title, Calendar dueDate, String description) {

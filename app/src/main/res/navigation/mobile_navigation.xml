@@ -98,12 +98,10 @@
         android:id="@+id/action_assignmentsFragment_to_addAssignmentsFragment"
         app:destination="@id/addAssignmentsFragment" />
 
-
         <action
             android:id="@+id/action_assignmentsFragment_to_editAssignmentsFragment"
             app:destination="@id/editAssignmentsFragment" />
     </fragment>
-
 
     <fragment
         android:id="@+id/addAssignmentsFragment"
@@ -117,7 +115,6 @@
         android:name="com.example.myapplication.ui.EditClassFragment"
         android:label="edit_class"
         tools:layout="@layout/edit_class" />
-
     <fragment
         android:id="@+id/editAssignmentsFragment"
         android:name="com.example.myapplication.ui.EditAssignmentsFragment"

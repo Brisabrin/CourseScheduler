@@ -7,7 +7,7 @@ public class Exams {
 
     public String id;
     public String title;
-    public Calendar datetime;  // Change the type to Calendar
+    public Calendar datetime;
     public String location;
 
     public Exams(String title, Calendar datetime, String location) {
@@ -19,8 +19,8 @@ public class Exams {
     public Exams() {
         this.id = "";
         this.title = "";
-        this.datetime = (Calendar) Calendar.getInstance().clone(); // Clone the Calendar instance
-        this.datetime.add(Calendar.DAY_OF_MONTH, 7); // Add 7 days to the cloned instance
+        this.datetime = (Calendar) Calendar.getInstance().clone();
+        this.datetime.add(Calendar.DAY_OF_MONTH, 7);
         this.location = "";
     }
     public Exams(Exams other) {
