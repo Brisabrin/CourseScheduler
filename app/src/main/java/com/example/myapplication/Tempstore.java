@@ -7,9 +7,21 @@ public class Tempstore {
     private static Tempstore instance;
     public static HashMap<String, HashMap<String,Object>> coursedata;
     public static String classId;
-    private Tempstore() {
+    public static ArrayList<TodoItem> tasks;private static boolean isInputCardVisible = false;
 
+    public static boolean isInputCardVisible() {
+        return isInputCardVisible;
     }
+
+    public static void setInputCardVisibility(boolean isVisible) {
+        isInputCardVisible = isVisible;
+    }
+
+
+    private Tempstore() {
+        tasks = new ArrayList<>();
+    }
+
 
     public static synchronized Tempstore getInstance() {
         if (instance == null) {
@@ -194,6 +206,37 @@ public class Tempstore {
             coursedata.get(classId).put("Assignments", assignmentsList);
         }
     }
+
+    public static List<TodoItem> getTodoList() {
+        if (tasks == null) {
+            return new ArrayList<TodoItem>();
+        }
+        return tasks;
+    }
+    public static void deleteTodoItem(String todoItemId) {
+        tasks.removeIf(item -> item.id.equals(todoItemId));
+    }
+
+    public static void editTodoItem(String todoItemId, TodoItem updatedTodoItem) {
+        for (TodoItem item : tasks) {
+            if (item.id.equals(todoItemId)) {
+                item.title = updatedTodoItem.title;
+                item.description = updatedTodoItem.description;
+                item.isCompleted = updatedTodoItem.isCompleted;
+                break;
+            }
+        }
+    }
+    public static void addTodoItem(TodoItem item) {
+        if (tasks == null) {
+            tasks = new ArrayList<TodoItem>();
+        }
+        tasks.add(item);
+
+        setInputCardVisibility(false);
+    }
+
+
 }
 
 
