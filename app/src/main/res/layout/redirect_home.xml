@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:clickable="true"
-        android:background="@color/grey">
+        android:backgroundTint="@color/grey">
 
         <TextView
             android:id="@+id/textViewAssignments"
@@ -31,13 +31,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:clickable="true"
-        android:background="@color/grey">
+        android:backgroundTint="@color/grey">
 
         <TextView
             android:id="@+id/textViewExams"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Exams"
+           git android:text="Exams"
             android:textStyle="bold"
             android:padding="16dp"
             android:onClick="redirectToExams" />
