@@ -1,5 +1,6 @@
 package com.example.myapplication.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,17 +21,18 @@ public class AssignmentsFragment extends Fragment {
     private RecyclerView recyclerView;
     private AssignmentsAdapter assignmentsAdapter;
 
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_assignments, container, false);
 
-        recyclerView = view.findViewById(R.id.idAssignments);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
-        List<Assignments> assignmentsList = getDummyAssignmentsData();
-        assignmentsAdapter = new AssignmentsAdapter(getActivity(), assignmentsList, null);
-        recyclerView.setAdapter(assignmentsAdapter);
+//        recyclerView = view.findViewById(R.id.idAssignments);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+//
+//        List<Assignments> assignmentsList = getDummyAssignmentsData();
+//        assignmentsAdapter = new AssignmentsAdapter(getActivity(), assignmentsList, null);
+//        recyclerView.setAdapter(assignmentsAdapter);
 
         return view;
     }

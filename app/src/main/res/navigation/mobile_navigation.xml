@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/todoListFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -12,12 +12,12 @@
         tools:layout="@layout/fragment_home">
 
         <action
-        android:id="@+id/action_homeFragment_to_classInputFragment"
-        app:destination="@id/classInputFragment" />
+            android:id="@+id/action_homeFragment_to_classInputFragment"
+            app:destination="@id/classInputFragment" />
 
         <action
-        android:id="@+id/action_homeFragment_to_redirectFragment"
-        app:destination="@id/redirectFragment" />
+            android:id="@+id/action_homeFragment_to_redirectFragment"
+            app:destination="@id/redirectFragment" />
     </fragment>
 
 
@@ -44,8 +44,8 @@
         android:name="com.example.myapplication.ui.RedirectFragment"
         android:label="fragment_redirect"
         tools:layout="@layout/redirect_home" >
-<!--        <action-->
-<!--            android:id="@+id/action_redirectFragment_to_assignmentsFragment" />-->
+        <!--        <action-->
+        <!--            android:id="@+id/action_redirectFragment_to_assignmentsFragment" />-->
         <action
             android:id="@+id/action_redirectFragment_to_examsFragment"
             app:destination="@id/examsFragment" />
@@ -71,8 +71,7 @@
         android:id="@+id/addExamFragment"
         android:name="com.example.myapplication.ui.AddExamFragment"
         android:label="add_exam"
-        tools:layout="@layout/add_exam"
-        ></fragment>
+        tools:layout="@layout/add_exam" />
 
 
     <fragment
@@ -80,6 +79,27 @@
         android:name="com.example.myapplication.ui.AssignmentsFragment"
         android:label="fragment_assignments"
         tools:layout="@layout/fragment_assignments" />
+
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.example.myapplication.ui.TodoListFragment"
+        android:label="todo_list_fragment"
+        tools:layout="@layout/fragment_todo_list">
+        <action
+            android:id="@+id/action_todoListFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.example.myapplication.ui.AddTaskFragment"
+        android:label="add_task_fragment"
+        tools:layout="@layout/add_task">
+        <action
+            android:id="@+id/action_addTaskFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
+    </fragment>
+
 
 
 </navigation>

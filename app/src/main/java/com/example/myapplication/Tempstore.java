@@ -9,8 +9,10 @@ public class Tempstore {
     private static Tempstore instance;
     public static HashMap<String, HashMap<String,Object>> coursedata;
     public static String classId; //when pressed set class id
+    private ArrayList<Task> tasks;
     private Tempstore() {
         // Private constructor to prevent instantiation
+        tasks = new ArrayList<>();
     }
 
     public static synchronized Tempstore getInstance() {
@@ -70,5 +72,17 @@ public class Tempstore {
         }
 
         return classList;
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    public boolean removeTask(Task task) {
+        return tasks.remove(task);
+    }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
     }
 }
