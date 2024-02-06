@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/mainBlue"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
     app:cardMaxElevation="10dp"
@@ -23,7 +23,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:text="Exam Title"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idExam"
+            android:textColor="@color/white"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:drawablePadding="2dp"
@@ -43,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idExamTime"
+            android:textColor="@color/white"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:drawablePadding="2dp"
