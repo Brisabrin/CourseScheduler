@@ -88,6 +88,9 @@
         <action
             android:id="@+id/action_todoListFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_todoListFragment_to_editTaskFragment"
+            app:destination="@id/editTaskFragment" />
     </fragment>
 
     <fragment
@@ -99,7 +102,10 @@
             android:id="@+id/action_addTaskFragment_to_todoListFragment"
             app:destination="@id/todoListFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/editTaskFragment"
+        android:name="com.example.myapplication.ui.EditTaskFragment"
+        android:label="EditTaskFragment" />
 
 
 </navigation>
