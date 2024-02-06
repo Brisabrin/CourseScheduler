@@ -14,6 +14,12 @@ public class ClassDetails {
         this.datetime = datetime;
         this.instructor = instructor;
     }
+    public ClassDetails() {
+        this.id = "";
+        this.title = "";
+        this.datetime = "";
+        this.instructor = "";
+    }
     public String getId() {
         return id;
     }

@@ -1,6 +1,7 @@
 package com.example.myapplication.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +16,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Assignments;
 import com.example.myapplication.AssignmentsAdapter;
+import com.example.myapplication.ClassDetailAdapter;
+import com.example.myapplication.ClassDetails;
 import com.example.myapplication.R;
 import com.example.myapplication.Tempstore;
+import com.example.myapplication.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AssignmentsFragment extends Fragment {
+public class AssignmentsFragment extends Fragment implements AssignmentsAdapter.OnItemClickListener{
 
     private RecyclerView recyclerView;
     private AssignmentsAdapter assignmentsAdapter;
     private String classId;
+    Tempstore tempstore = Tempstore.getInstance();
+
 
     @Nullable
     @Override
@@ -43,7 +49,7 @@ public class AssignmentsFragment extends Fragment {
 
         if (classId != null) {
             List<Assignments> assignmentsList = getAssignmentsDataFromTempstore();
-            assignmentsAdapter = new AssignmentsAdapter(getActivity(), assignmentsList, null);
+            assignmentsAdapter = new AssignmentsAdapter(getActivity(), assignmentsList, this);
             recyclerView.setAdapter(assignmentsAdapter);
         }
         Button addAssignmentButton = view.findViewById(R.id.addAssignmentButton);
@@ -60,7 +66,6 @@ public class AssignmentsFragment extends Fragment {
         if (classId != null) {
             Bundle bundle = new Bundle();
             bundle.putString("classId", classId);
-
             NavHostFragment.findNavController(this).navigate(R.id.action_assignmentsFragment_to_addAssignmentsFragment, bundle);
         }
     }
@@ -77,5 +82,29 @@ public class AssignmentsFragment extends Fragment {
         }
 
         return assignmentsList;
+    }
+
+    @Override
+    public void onEditClick(String assignmentId) {
+        Log.d("MyClass", "edit button clicked");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("assignmentId", assignmentId);
+        bundle.putString("classId", classId);
+
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.action_assignmentsFragment_to_editAssignmentsFragment, bundle);
+
+    }
+    public void onDeleteClick(String assignmentId) {
+        Log.d("MyClass", "delete button clicked");
+        tempstore.deleteAssignment(assignmentId, classId);
+        refreshRecyclerView();
+    }
+
+    private void refreshRecyclerView() {
+        ArrayList<Assignments> assignmentsList = (ArrayList<Assignments>) tempstore.getAssignmentList(classId);
+        AssignmentsAdapter adapter = new AssignmentsAdapter(getActivity(), assignmentsList, this);
+        recyclerView.setAdapter(adapter);
     }
 }

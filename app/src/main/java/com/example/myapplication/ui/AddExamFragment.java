@@ -56,7 +56,7 @@ public class AddExamFragment extends Fragment {
 
         return view;
     }
-// ...
+
 
     private void showDatePicker() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
@@ -98,9 +98,5 @@ public class AddExamFragment extends Fragment {
 
         NavHostFragment.findNavController(this).popBackStack();
     }
-
-
-
-
 
 }

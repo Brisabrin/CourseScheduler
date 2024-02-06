@@ -1,5 +1,5 @@
-package com.example.myapplication.ui;
 
+package com.example.myapplication.ui;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,19 +39,25 @@ public class AddAssignmentsFragment extends Fragment {
         assignmentTitleInput = view.findViewById(R.id.editTextAssignmentTitle);
         assignmentDescriptionInput = view.findViewById(R.id.editTextAssignmentDescription);
 
-        pickDueDateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePicker();
-            }
-        });
+        if (pickDueDateButton != null && submitAssignmentBtn != null
+                && assignmentTitleInput != null && assignmentDescriptionInput != null) {
 
-        submitAssignmentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveAssignment();
-            }
-        });
+            pickDueDateButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDatePicker();
+                }
+            });
+
+            submitAssignmentBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveAssignment();
+                }
+            });
+        } else {
+            // Log an error or handle the situation where one of the views is null
+        }
 
         return view;
     }
@@ -85,6 +91,10 @@ public class AddAssignmentsFragment extends Fragment {
         String title = assignmentTitleInput.getText().toString();
         String description = assignmentDescriptionInput.getText().toString();
 
+        if (title.isEmpty() || description.isEmpty()) {
+            return;
+        }
+
         Assignments newAssignment = new Assignments(title, selectedDueDate, description);
 
         Tempstore tempstore = Tempstore.getInstance();
@@ -93,10 +103,13 @@ public class AddAssignmentsFragment extends Fragment {
         if (args != null && args.containsKey("classId")) {
             classId = args.getString("classId");
         }
-        tempstore.addAssignments(newAssignment, classId);
 
-        Toast.makeText(requireContext(), "Assignment saved!", Toast.LENGTH_SHORT).show();
+        if (classId != null) {
+            tempstore.addAssignments(newAssignment, classId);
+            Toast.makeText(requireContext(), "Assignment saved!", Toast.LENGTH_SHORT).show();
+            NavHostFragment.findNavController(this).popBackStack();
+        } else {
 
-        NavHostFragment.findNavController(this).popBackStack();
+        }
     }
 }

@@ -15,4 +15,24 @@ public class Assignments {
         this.dueDate = dueDate;
         this.description = description;
     }
+
+    public Assignments() {
+        this.id = "";
+        this.title = "";
+        this.dueDate = (Calendar) Calendar.getInstance().clone(); // Clone the Calendar instance
+        this.dueDate.add(Calendar.DAY_OF_MONTH, 7); // Add 7 days to the cloned instance
+        this.description = "";
+    }
+
+    public Assignments(Assignments other) {
+        this.id = other.id;
+        this.title = other.title;
+        this.classId = other.classId;
+        this.dueDate = other.dueDate;
+        this.description = other.description;
+
+    }
+
+
+
 }

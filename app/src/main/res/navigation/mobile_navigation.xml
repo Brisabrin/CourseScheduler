@@ -18,6 +18,10 @@
         <action
         android:id="@+id/action_homeFragment_to_redirectFragment"
         app:destination="@id/redirectFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editClassFragment"
+            app:destination="@id/editClassFragment"
+            />
     </fragment>
 
 
@@ -44,8 +48,7 @@
         android:name="com.example.myapplication.ui.RedirectFragment"
         android:label="fragment_redirect"
         tools:layout="@layout/redirect_home" >
-<!--        <action-->
-<!--            android:id="@+id/action_redirectFragment_to_assignmentsFragment" />-->
+
         <action
             android:id="@+id/action_redirectFragment_to_examsFragment"
             app:destination="@id/examsFragment" />
@@ -64,6 +67,9 @@
         <action
             android:id="@+id/action_examsFragment_to_addExamFragment"
             app:destination="@id/addExamFragment" />
+        <action
+            android:id="@+id/action_examsFragment_to_editExamFragment"
+            app:destination="@id/editExamFragment" />
     </fragment>
 
 
@@ -72,6 +78,13 @@
         android:name="com.example.myapplication.ui.AddExamFragment"
         android:label="add_exam"
         tools:layout="@layout/add_exam"
+        ></fragment>
+
+    <fragment
+        android:id="@+id/editExamFragment"
+        android:name="com.example.myapplication.ui.EditExamFragment"
+        android:label="edit_exam"
+        tools:layout="@layout/edit_exam"
         ></fragment>
 
 
@@ -84,6 +97,9 @@
         android:id="@+id/action_assignmentsFragment_to_addAssignmentsFragment"
         app:destination="@id/addAssignmentsFragment" />
 
+        <action
+            android:id="@+id/action_assignmentsFragment_to_editAssignmentsFragment"
+            app:destination="@id/editAssignmentsFragment" />
     </fragment>
 
 
@@ -94,8 +110,16 @@
         tools:layout="@layout/add_assignment" />
 
 
+    <fragment
+        android:id="@+id/editClassFragment"
+        android:name="com.example.myapplication.ui.EditClassFragment"
+        android:label="edit_class"
+        tools:layout="@layout/edit_class" />
 
-
-
+    <fragment
+        android:id="@+id/editAssignmentsFragment"
+        android:name="com.example.myapplication.ui.EditAssignmentsFragment"
+        android:label="edit_assignment"
+        tools:layout="@layout/edit_assignment" />
 
 </navigation>

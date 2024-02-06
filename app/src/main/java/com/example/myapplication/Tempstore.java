@@ -1,21 +1,23 @@
 package com.example.myapplication;
-import java.util.HashMap;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Tempstore {
 
-    //Class Details, Exams, Assignments
+    // Class Details, Exams, Assignments
     private static Tempstore instance;
-    public static HashMap<String, HashMap<String,Object>> coursedata;
-    public static String classId; //when pressed set class id
+    public static HashMap<String, HashMap<String, Object>> coursedata;
+
     private Tempstore() {
-        // Private constructor to prevent instantiation
     }
 
     public static synchronized Tempstore getInstance() {
         if (instance == null) {
             instance = new Tempstore();
+            coursedata = new HashMap<>();
         }
         return instance;
     }
@@ -26,7 +28,7 @@ public class Tempstore {
             coursedata = new HashMap<>();
         }
 
-        //ClassDetails : id, title, datetime, instructor
+        // ClassDetails : id, title, datetime, instructor
         HashMap<String, Object> classdata = new HashMap<>();
         classdata.put("Class", data);
         coursedata.put(data.id, classdata);
@@ -34,10 +36,13 @@ public class Tempstore {
 
     public static void addAssignments(Assignments data, String classId) {
         ArrayList<Assignments> a;
-        if (!coursedata.get(classId).containsKey("Assignments")) {
-            a = new ArrayList<Assignments>();
-            coursedata.get(classId).put("Assignments", a);
+        if (!coursedata.containsKey(classId)) {
+            coursedata.put(classId, new HashMap<>());
+        }
 
+        if (!coursedata.get(classId).containsKey("Assignments")) {
+            a = new ArrayList<>();
+            coursedata.get(classId).put("Assignments", a);
         } else {
             a = (ArrayList<Assignments>) coursedata.get(classId).get("Assignments");
         }
@@ -46,16 +51,18 @@ public class Tempstore {
 
     public static void addExams(Exams data, String classId) {
         ArrayList<Exams> a;
-        if (!coursedata.get(classId).containsKey("Exams")) {
-            a = new ArrayList<Exams>();
-            coursedata.get(classId).put("Exams", a);
+        if (!coursedata.containsKey(classId)) {
+            coursedata.put(classId, new HashMap<>());
+        }
 
+        if (!coursedata.get(classId).containsKey("Exams")) {
+            a = new ArrayList<>();
+            coursedata.get(classId).put("Exams", a);
         } else {
             a = (ArrayList<Exams>) coursedata.get(classId).get("Exams");
         }
         a.add(data);
     }
-
 
     public static List<ClassDetails> getClassList() {
         List<ClassDetails> classList = new ArrayList<>();
@@ -71,4 +78,116 @@ public class Tempstore {
 
         return classList;
     }
+
+    public static void deleteClass(String classId) {
+        coursedata.remove(classId);
+    }
+
+    public static void editClass(String classId, ClassDetails info) {
+        if (coursedata != null && coursedata.containsKey(classId)) {
+            HashMap<String, Object> classData = coursedata.get(classId);
+
+            if (classData != null) {
+                classData.put("Class", info);
+            } else {
+                System.out.println("ClassData is null for classId: " + classId);
+            }
+        } else {
+            System.out.println("ClassId not found: " + classId);
+        }
+    }
+
+    public static void deleteAssignment(String assignmentId, String classId) {
+        if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Assignments")) {
+            List<Assignments> assignmentsList = (List<Assignments>) coursedata.get(classId).get("Assignments");
+            assignmentsList.removeIf(assignment -> assignment.id.equals(assignmentId));
+
+            HashMap<String, Object> classData = coursedata.get(classId);
+            classData.put("Assignments", assignmentsList);
+        }
+    }
+
+    public static void editAssignment(String assignmentId, String classId, Assignments updatedAssignment) {
+        if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Assignments")) {
+            List<Assignments> assignmentsList = (List<Assignments>) coursedata.get(classId).get("Assignments");
+
+            for (Assignments assignment : assignmentsList) {
+                if (assignment.id.equals(assignmentId)) {
+                    assignment.title = updatedAssignment.title;
+                    assignment.dueDate = updatedAssignment.dueDate;
+                    assignment.description = updatedAssignment.description;
+                    break;
+                }
+            }
+        }
+    }
+
+    public static List<Assignments> getAssignmentList(String classId) {
+        List<Assignments> assignmentsList = new ArrayList<>();
+
+        if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Assignments")) {
+            assignmentsList = (List<Assignments>) coursedata.get(classId).get("Assignments");
+        }
+
+        return assignmentsList;
+    }
+
+    public static Assignments getAssignment(String classId, String assignmentId) {
+        Assignments assignment = null;
+
+        if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Assignments")) {
+            List<Assignments> assignmentsList = (List<Assignments>) coursedata.get(classId).get("Assignments");
+
+            for (Assignments a : assignmentsList) {
+                if (a.id.equals(assignmentId)) {
+                    assignment = a;
+                    break;
+                }
+            }
+        }
+
+        return assignment;
+    }
+
+    public static void deleteExam(String examId, String classId) {
+        if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Exams")) {
+            List<Exams> examsList = (List<Exams>) coursedata.get(classId).get("Exams");
+            examsList.removeIf(exam -> exam.id.equals(examId));
+
+            HashMap<String, Object> classData = coursedata.get(classId);
+            classData.put("Exams", examsList);
+        }
+    }
+
+    public static void editExam(String examId, String classId, Exams updatedExam) {
+        if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Exams")) {
+            List<Exams> examsList = (List<Exams>) coursedata.get(classId).get("Exams");
+
+            for (Exams exam : examsList) {
+                if (exam.id.equals(examId)) {
+                    exam.title = updatedExam.title;
+                    exam.datetime = updatedExam.datetime;
+                    exam.location = updatedExam.location;
+                    break;
+                }
+            }
+        }
+    }
+
+    public static List<Exams> getExamList(String classId) {
+        List<Exams> examsList = new ArrayList<>();
+
+        if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Exams")) {
+            examsList = (List<Exams>) coursedata.get(classId).get("Exams");
+        }
+
+        return examsList;
+    }
 }
+
+
+
+
+
+
+

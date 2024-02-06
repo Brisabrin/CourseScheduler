@@ -9,8 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
 
@@ -19,7 +21,8 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
     private OnItemClickListener onItemClickListener;
 
     public interface OnItemClickListener {
-        void onItemClick(String examId);
+        void onEditClick(String examId);
+        void onDeleteClick(String examId);
     }
 
     public ExamAdapter(Context context, List<Exams> examList, OnItemClickListener onItemClickListener) {
@@ -40,8 +43,26 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
         Exams examDetails = examList.get(position);
 
         holder.examTitle.setText(examDetails.title);
+
         holder.dateTextView.setText(formatDate(examDetails.datetime));
         holder.locationView.setText(examDetails.location);
+        holder.editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onEditClick(examDetails.id);
+                }
+            }
+        });
+
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onDeleteClick(examDetails.id);
+                }
+            }
+        });
     }
 
     private String formatDate(Calendar calendar) {
@@ -55,6 +76,9 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView examTitle, dateTextView, locationView;
+        public View editButton;
+        public View deleteButton;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +86,8 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
             examTitle = itemView.findViewById(R.id.idExam);
             dateTextView = itemView.findViewById(R.id.idExamTime);
             locationView = itemView.findViewById(R.id.idLocation);
+            editButton = itemView.findViewById(R.id.editExamButton);
+            deleteButton = itemView.findViewById(R.id.deleteExamButton);
         }
     }
 }
