@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Text View to display Course Name -->
         <TextView
             android:id="@+id/idExam"
             android:layout_width="match_parent"
@@ -48,6 +47,25 @@
             android:drawablePadding="2dp"
             android:text="Location"
             />
+        <Button
+            android:id="@+id/editExamButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:layout_below="@id/idLocation"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_alignParentEnd="true"/>
+
+        <Button
+            android:id="@+id/deleteExamButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_below="@id/idLocation"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@id/editButton"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

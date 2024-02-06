@@ -40,7 +40,6 @@ public class ClassInputFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_class, container, false);
 
-        // Initialize your input fields and submit button
 
         Button submitBtn = view.findViewById(R.id.submitBtn);
 
@@ -49,7 +48,6 @@ public class ClassInputFragment extends Fragment {
         instructorInput = view.findViewById(R.id.instructorInput);
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 ClassDetails new_course  = new ClassDetails(titleInput.getText().toString(), datetimeInput.getText().toString(), instructorInput.getText().toString());

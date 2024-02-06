@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ExamFragment extends Fragment {
+public class ExamFragment extends Fragment implements ExamAdapter.OnItemClickListener {
 
     private RecyclerView recyclerView;
     private ExamAdapter examAdapter;
@@ -39,15 +39,11 @@ public class ExamFragment extends Fragment {
         Bundle args = getArguments();
         if (args != null && args.containsKey("classId")) {
             classId = args.getString("classId");
-        } else {
-            // Log a message if classId is null
-//            Log.d("ExamFragment", "classId is null");
         }
 
-        // Proceed only if classId is not null
         if (classId != null) {
             List<Exams> examList = getExamDataFromTempstore();
-            examAdapter = new ExamAdapter(getActivity(), examList, null);
+            examAdapter = new ExamAdapter(getActivity(), examList, this);
             recyclerView.setAdapter(examAdapter);
         }
 
@@ -62,21 +58,19 @@ public class ExamFragment extends Fragment {
         return view;
     }
 
-
     public void onAddExamClicked() {
-
         if (classId != null) {
             Bundle bundle = new Bundle();
             bundle.putString("classId", classId);
 
             NavHostFragment.findNavController(this).navigate(R.id.action_examsFragment_to_addExamFragment, bundle);
         }
-
     }
+
     private List<Exams> getExamDataFromTempstore() {
         List<Exams> examList = new ArrayList<>();
 
-        if (classId!= null) {
+        if (classId != null) {
             HashMap<String, Object> classData = Tempstore.coursedata.get(classId);
             if (classData.containsKey("Exams")) {
                 ArrayList<Exams> exams = (ArrayList<Exams>) classData.get("Exams");
@@ -85,5 +79,27 @@ public class ExamFragment extends Fragment {
         }
 
         return examList;
+    }
+
+    @Override
+    public void onEditClick(String examId) {
+        Bundle bundle = new Bundle();
+        bundle.putString("examId", examId);
+        bundle.putString("classId", classId);
+
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.action_examsFragment_to_editExamFragment, bundle);
+    }
+
+    @Override
+    public void onDeleteClick(String examId) {
+        Tempstore.getInstance().deleteExam(examId, classId);
+        refreshRecyclerView();
+    }
+
+    private void refreshRecyclerView() {
+        ArrayList<Exams> examList = (ArrayList<Exams>) Tempstore.getInstance().getExamList(classId);
+        examAdapter = new ExamAdapter(getActivity(), examList, this);
+        recyclerView.setAdapter(examAdapter);
     }
 }
