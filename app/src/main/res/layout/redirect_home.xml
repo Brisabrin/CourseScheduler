@@ -37,7 +37,7 @@
             android:id="@+id/textViewExams"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           git android:text="Exams"
+            android:text="Exams"
             android:textStyle="bold"
             android:padding="16dp"
             android:onClick="redirectToExams" />
