@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titleInput"
-        android:hint="Schedule"
+        android:hint="Schedule/Time"
         android:inputType="text" />
 
     <EditText
