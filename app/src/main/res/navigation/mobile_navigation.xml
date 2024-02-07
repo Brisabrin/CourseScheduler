@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.myapplication.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_classInputFragment"
+            app:destination="@id/classInputFragment" />
+
+        <action
+
+            android:id="@+id/action_homeFragment_to_redirectFragment"
+            app:destination="@id/redirectFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_editClassFragment"
+            app:destination="@id/editClassFragment"
+            />
+        <action
+            android:id="@+id/action_navigation_home_to_toDoFragment"
+            app:destination="@id/toDoFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.myapplication.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/classInputFragment"
+        android:name="com.example.myapplication.ui.ClassInputFragment"
+        android:label="Add class"
+        tools:layout="@layout/add_class" />
+
+    <fragment
+        android:id="@+id/redirectFragment"
+        android:name="com.example.myapplication.ui.RedirectFragment"
+        android:label="Class options"
+        tools:layout="@layout/redirect_home" >
+
+        <action
+            android:id="@+id/action_redirectFragment_to_examsFragment"
+            app:destination="@id/examsFragment" />
+        <action
+            android:id="@+id/action_redirectFragment_to_assignmentsFragment"
+            app:destination="@id/assignmentsFragment"
+            />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/examsFragment"
+        android:name="com.example.myapplication.ui.ExamFragment"
+        android:label="Exams"
+        tools:layout="@layout/fragment_exam" >
+        <action
+            android:id="@+id/action_examsFragment_to_addExamFragment"
+            app:destination="@id/addExamFragment" />
+        <action
+            android:id="@+id/action_examsFragment_to_editExamFragment"
+            app:destination="@id/editExamFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/addExamFragment"
+        android:name="com.example.myapplication.ui.AddExamFragment"
+        android:label="Add exam"
+        tools:layout="@layout/add_exam" />
+
+    <fragment
+        android:id="@+id/editExamFragment"
+        android:name="com.example.myapplication.ui.EditExamFragment"
+        android:label="Edit exam"
+        tools:layout="@layout/edit_exam"
+        ></fragment>
+
+
+    <fragment
+        android:id="@+id/assignmentsFragment"
+        android:name="com.example.myapplication.ui.AssignmentsFragment"
+        android:label="Assignments"
+        tools:layout="@layout/fragment_assignments">
+    <action
+        android:id="@+id/action_assignmentsFragment_to_addAssignmentsFragment"
+        app:destination="@id/addAssignmentsFragment" />
+
+        <action
+            android:id="@+id/action_assignmentsFragment_to_editAssignmentsFragment"
+            app:destination="@id/editAssignmentsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addAssignmentsFragment"
+        android:name="com.example.myapplication.ui.AddAssignmentsFragment"
+        android:label="Add Assignments"
+        tools:layout="@layout/add_assignment" />
+
+
+    <fragment
+        android:id="@+id/editClassFragment"
+        android:name="com.example.myapplication.ui.EditClassFragment"
+        android:label="Edit class"
+        tools:layout="@layout/edit_class" />
+
+    <fragment
+        android:id="@+id/editAssignmentsFragment"
+        android:name="com.example.myapplication.ui.EditAssignmentsFragment"
+        android:label="Edit Assignment"
+        tools:layout="@layout/edit_assignment" />
+
+    <fragment
+        android:id="@+id/toDoFragment"
+        android:name="com.example.myapplication.ui.ToDoFragment"
+        android:label="ToDoFragment" >
+        <action
+            android:id="@+id/action_toDoFragment_to_addTodoFragment"
+            app:destination="@id/addTodoFragment" />
+        <action
+            android:id="@+id/action_toDoFragment_to_editTodoFragment"
+            app:destination="@id/editTodoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addTodoFragment"
+        android:name="com.example.myapplication.ui.AddTodoFragment"
+        android:label="AddTodoFragment" />
+    <fragment
+        android:id="@+id/editTodoFragment"
+        android:name="com.example.myapplication.ui.EditTodoFragment"
+        android:label="EditTodoFragment" />
+
+</navigation>

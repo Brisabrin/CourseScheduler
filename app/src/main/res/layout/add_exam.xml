@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextExamTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Exam Title" />
+
+    <TextView
+        android:id="@+id/textViewExamDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Exam Date"
+        android:clickable="true"
+        android:focusable="false" />
+
+    <Button
+        android:id="@+id/buttonPickExamDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick Date" />
+
+    <EditText
+        android:id="@+id/editTextExamDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Exam Description" />
+
+    <Button
+        android:id="@+id/buttonSaveExam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Exam" />
+
+</LinearLayout>

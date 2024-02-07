@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/editToDoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="Title"
+        android:textSize="18sp"
+        android:textStyle="bold">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/editToDoDeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick Deadline"
+        app:layout_constraintBottom_toTopOf="@id/editToDoDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmEditToDoDeadline"
+        android:backgroundTint="@color/gray"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/confirmEditToDoDeadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="false"
+        android:textSize="16dp"
+        android:hint="Task Deadline"
+        app:layout_constraintTop_toBottomOf="@+id/editToDoTitle" />
+
+    <EditText
+        android:id="@+id/editToDoDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Description"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/editToDoDeadline" />
+
+    <Button
+        android:id="@+id/buttonEditInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editToDoDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
