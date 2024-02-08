@@ -51,7 +51,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/idAssignments"
             android:layout_width="match_parent"
+            android:nestedScrollingEnabled="false"
+            android:clipToPadding="false"
+            android:paddingBottom="30dp"
             android:layout_height="wrap_content"/>
     </androidx.core.widget.NestedScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,11 +25,13 @@ public class HomeFragment extends Fragment implements ClassDetailAdapter.OnItemC
 
     private FragmentHomeBinding binding;
     private RecyclerView recyclerView;
-    Tempstore tempstore = Tempstore.getInstance();
+    Tempstore tempstore;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        Tempstore tempstore = Tempstore.getInstance();
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         ArrayList<ClassDetails> classDetailsList = new ArrayList<>();

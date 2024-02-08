@@ -34,7 +34,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idCourse"
         android:layout_width="match_parent"
+        android:nestedScrollingEnabled="false"
+        android:clipToPadding="false"
+        android:paddingBottom="30dp"
         android:layout_height="wrap_content"/>
     </androidx.core.widget.NestedScrollView>
-<!--    </ScrollView>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

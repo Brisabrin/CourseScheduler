@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 public class Tempstore {
@@ -21,6 +22,31 @@ public class Tempstore {
 
     private Tempstore() {
         tasks = new ArrayList<>();
+
+        ClassDetails sampleClass = new ClassDetails("Math Class", "", "");
+
+        Calendar dueDate1 = Calendar.getInstance();
+        dueDate1.set(2022, Calendar.FEBRUARY, 15);
+        Assignments assignment1 = new Assignments("Assignment 1", dueDate1, "Description 1");
+
+        Calendar dueDate2 = Calendar.getInstance();
+        dueDate2.set(2022, Calendar.FEBRUARY, 20);
+        Assignments assignment2 = new Assignments("Assignment 2", dueDate2, "Description 2");
+
+        Tempstore.addCourseDetails(sampleClass);
+        Tempstore.addAssignments(assignment1, sampleClass.id);
+        Tempstore.addAssignments(assignment2, sampleClass.id);
+
+        Calendar examDate1 = Calendar.getInstance();
+        examDate1.set(2022, Calendar.FEBRUARY, 25);
+        Exams exam1 = new Exams("Midterm Exam", examDate1, "Room 101");
+
+        Calendar examDate2 = Calendar.getInstance();
+        examDate2.set(2022, Calendar.MARCH, 15);
+        Exams exam2 = new Exams("Final Exam", examDate2, "Room 202");
+
+        Tempstore.addExams(exam1, sampleClass.id);
+        Tempstore.addExams(exam2, sampleClass.id);
     }
 
 
@@ -187,9 +213,7 @@ public class Tempstore {
         if (coursedata.containsKey(classId) && coursedata.get(classId).containsKey("Exams")) {
             examsList = (List<Exams>) coursedata.get(classId).get("Exams");
         }
-
         return examsList;
-
     }
 
     public static void sortByDueDate(String classId) {
