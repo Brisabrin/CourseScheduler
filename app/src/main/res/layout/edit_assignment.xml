@@ -47,7 +47,7 @@
         android:hint="Assignment Description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPickAssignmentDueDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editAssignmentDueDate" />
 
     <Button
         android:id="@+id/saveAssignmentButton"
