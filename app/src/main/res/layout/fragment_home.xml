@@ -20,8 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Class"
-        app:layout_constraintTop_toBottomOf="@id/classHomeTitle"
-        app:layout_constraintStart_toStartOf="@id/classHomeTitle" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/classHomeTitle" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"

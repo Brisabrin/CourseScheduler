@@ -3,6 +3,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,7 +20,10 @@
         android:id="@+id/addExamButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Exam" />
+        android:text="Add Exam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="19dp" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"

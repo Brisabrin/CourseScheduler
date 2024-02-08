@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.Assignments;
+import com.example.myapplication.Assignments;
 import com.example.myapplication.R;
 import com.example.myapplication.Tempstore;
 
@@ -27,12 +28,12 @@ import java.util.Locale;
 public class EditAssignmentsFragment extends Fragment {
 
     private EditText editAssignmentTitle, editAssignmentDueDate, editAssignmentDescription;
-    private Assignments assignments = new Assignments();
+    private Assignments currentAssignment;
+    private Assignments assignment = new Assignments();
     private Tempstore tempstore = Tempstore.getInstance();
     private String assignmentId;
     private String classId;
-    private Calendar selectedDueDate = Calendar.getInstance(); // Declare selectedDueDate
-
+    private Calendar selectedDueDate = Calendar.getInstance();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,31 +47,33 @@ public class EditAssignmentsFragment extends Fragment {
         if (args != null) {
             assignmentId = args.getString("assignmentId");
             classId = args.getString("classId");
+            currentAssignment = tempstore.getAssignment(classId, assignmentId);
+            populateFields(currentAssignment);
         }
 
         Button pickDueDateButton = view.findViewById(R.id.buttonPickAssignmentDueDate);
-        if (pickDueDateButton != null) {
-            pickDueDateButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showDatePicker();
-                }
-            });
-        }
+        pickDueDateButton.setOnClickListener(v -> showDatePicker());
 
-        view.findViewById(R.id.saveAssignmentButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveAssignment();
-            }
-        });
-
+        view.findViewById(R.id.saveAssignmentButton).setOnClickListener(v -> saveAssignment());
 
         return view;
     }
 
+    private void populateFields(Assignments assignment) {
+        if (assignment != null) {
+            editAssignmentTitle.setText(assignment.title);
+            editAssignmentDescription.setText(assignment.description);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+            if (assignment.dueDate != null) {
+                editAssignmentDueDate.setText(dateFormat.format(assignment.dueDate.getTime()));
+                selectedDueDate.setTime(assignment.dueDate.getTime());
+            }
+        }
+    }
+
     private void showDatePicker() {
-        Calendar currentDueDate = assignments.dueDate != null ? assignments.dueDate : Calendar.getInstance();
+        Calendar currentDueDate = assignment.dueDate != null ? assignment.dueDate : Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 requireContext(),
                 new DatePickerDialog.OnDateSetListener() {
@@ -96,7 +99,7 @@ public class EditAssignmentsFragment extends Fragment {
     }
 
     private void saveAssignment() {
-        Assignments editedAssignment = new Assignments(assignments);
+        Assignments editedAssignment = new Assignments(assignment);
 
         editedAssignment.title = editAssignmentTitle.getText().toString();
         editedAssignment.id = assignmentId;

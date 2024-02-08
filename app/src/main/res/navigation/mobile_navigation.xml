@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/toDoFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -28,6 +28,12 @@
             android:id="@+id/action_navigation_home_to_toDoFragment"
             app:destination="@id/toDoFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_todo"
+        android:name="com.example.myapplication.ui.dashboard.DashboardFragment"
+        android:label="To do List"
+        tools:layout="@layout/fragment_todo" />
 
 
     <fragment
@@ -122,7 +128,7 @@
     <fragment
         android:id="@+id/toDoFragment"
         android:name="com.example.myapplication.ui.ToDoFragment"
-        android:label="ToDoFragment" >
+        android:label="To Do List" >
         <action
             android:id="@+id/action_toDoFragment_to_addTodoFragment"
             app:destination="@id/addTodoFragment" />
@@ -134,10 +140,10 @@
     <fragment
         android:id="@+id/addTodoFragment"
         android:name="com.example.myapplication.ui.AddTodoFragment"
-        android:label="AddTodoFragment" />
+        android:label="Add To do" />
     <fragment
         android:id="@+id/editTodoFragment"
         android:name="com.example.myapplication.ui.EditTodoFragment"
-        android:label="EditTodoFragment" />
+        android:label="Edit To do" />
 
 </navigation>
